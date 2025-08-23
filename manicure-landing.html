@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студия Маникюра "Pink Dreams" - Красота в каждой детали</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-pink: #ff6b9d;
+            --light-pink: #ffb3d1;
+            --pale-pink: #ffe8f5;
+            --dark-pink: #e91e63;
+            --accent-pink: #ff8fab;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --gray: #6c757d;
+            --dark-gray: #495057;
+            --text-dark: #2d3748;
+            --gradient-primary: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 100%);
+            --gradient-secondary: linear-gradient(135deg, #ffe8f5 0%, #ffb3d1 100%);
+            --gradient-hero: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 50%, #ffb3d1 100%);
+            --shadow-sm: 0 2px 4px rgba(255, 107, 157, 0.1);
+            --shadow-md: 0 4px 12px rgba(255, 107, 157, 0.15);
+            --shadow-lg: 0 8px 24px rgba(255, 107, 157, 0.2);
+            --font-primary: 'Poppins', sans-serif;
+            --font-accent: 'Playfair Display', serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 107, 157, 0.1);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar {
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .logo h2 {
+            font-family: var(--font-accent);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-pink);
+            margin: 3px 0;
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: var(--gradient-hero);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            color: var(--white);
+        }
+
+        .hero-title {
+            font-family: var(--font-accent);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .accent {
+            background: linear-gradient(45deg, #fff, #ffe8f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .image-placeholder {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-nail {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nail-1 {
+            top: 20%;
+            left: 20%;
+            animation-delay: 0s;
+        }
+
+        .nail-2 {
+            top: 60%;
+            right: 20%;
+            animation-delay: 1s;
+        }
+
+        .nail-3 {
+            bottom: 20%;
+            left: 50%;
+            animation-delay: 2s;
+        }
+
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary-pink);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-pink);
+            border: 2px solid var(--primary-pink);
+        }
+
+        .animated-btn {
+            position: relative;
+            transform: translateY(0);
+            transition: var(--transition);
+        }
+
+        .animated-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary.animated-btn:hover {
+            background: var(--gradient-primary);
+            color: var(--white);
+        }
+
+        .btn-secondary.animated-btn:hover {
+            background: var(--white);
+            color: var(--primary-pink);
+        }
+
+        .btn-outline.animated-btn:hover {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border-color: transparent;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-family: var(--font-accent);
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .gallery-placeholder {
+            height: 250px;
+            background: var(--gradient-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--dark-pink);
+            position: relative;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text h2::after {
+            left: 0;
+            transform: none;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .about-features {
+            margin-bottom: 2rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text p {
+            color: var(--gray);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .about-image .image-placeholder {
+            height: 400px;
+            background: var(--gradient-secondary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark-pink);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: var(--pale-pink);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-text h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-text p {
+            color: var(--gray);
+            margin: 0;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            background: var(--white);
+            font-family: var(--font-primary);
+            font-size: 1rem;
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-pink);
+            box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .full-width {
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-accent);
+            font-size: 1.5rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--light-pink);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: inline-block;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: var(--transition);
+                box-shadow: var(--shadow-lg);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .image-placeholder {
+                width: 300px;
+                height: 300px;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .service-card {
+                padding: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Notification styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 400px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border: none;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: var(--transition);
+            z-index: 1000;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <h2>Pink Dreams</h2>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Главная</a></li>
+                    <li><a href="#services" class="nav-link">Услуги</a></li>
+                    <li><a href="#gallery" class="nav-link">Галерея</a></li>
+                    <li><a href="#about" class="nav-link">О нас</a></li>
+                    <li><a href="#contact" class="nav-link">Контакты</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Студия Маникюра<br><span class="accent">Pink Dreams</span></h1>
+                    <p class="hero-subtitle">Превращаем ваши ногти в произведение искусства с любовью к деталям и индивидуальным подходом</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary animated-btn" onclick="scrollToSection('contact')">Записаться онлайн</button>
+                        <button class="btn btn-secondary animated-btn" onclick="scrollToSection('gallery')">Наши работы</button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-placeholder">
+                        <div class="floating-nail nail-1">💅</div>
+                        <div class="floating-nail nail-2">✨</div>
+                        <div class="floating-nail nail-3">💖</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наши Услуги</h2>
+                <p class="section-subtitle">Профессиональный уход за вашими ногтями</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💅</div>
+                    <h3>Классический маникюр</h3>
+                    <p>Бережный уход за кутикулой и придание идеальной формы ногтям</p>
+                    <div class="service-price">от 1500₽</div>
+                    <button class="btn btn-outline animated-btn">Подробнее</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Гель-лак покрытие</h3>
+                    <p>Стойкое покрытие, которое держится до 3-4 недель</p>
+                    <div class="service-price">от 2000₽</div>
+                    <button class="btn btn-outline animated-btn">Подробнее</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Nail-арт дизайн</h3>
+                    <p>Уникальные дизайны и художественная роспись ногтей</p>
+                    <div class="service-price">от 2500₽</div>
+                    <button class="btn btn-outline animated-btn">Подробнее</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💎</div>
+                    <h3>Наращивание ногтей</h3>
+                    <p>Создание идеальной длины и формы для ваших ногтей</p>
+                    <div class="service-price">от 3000₽</div>
+                    <button class="btn btn-outline animated-btn">Подробнее</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌸</div>
+                    <h3>SPA-уход для рук</h3>
+                    <p>Комплексный уход с массажем и питательными масками</p>
+                    <div class="service-price">от 1800₽</div>
+                    <button class="btn btn-outline animated-btn">Подробнее</button>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👣</div>
+                    <h3>Педикюр</h3>
+                    <p>Профессиональный уход за ногами и ступнями</p>
+                    <div class="service-price">от 2200₽</div>
+                    <button class="btn btn-outline animated-btn">Подробнее</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Галерея Работ</h2>
+                <p class="section-subtitle">Посмотрите на наши лучшие работы</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">Французский маникюр</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">Омбре дизайн</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">Цветочный nail-арт</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">Геометрический дизайн</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">Свадебный маникюр</div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">Зимний дизайн</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">О Нашей Студии</h2>
+                    <p>Студия маникюра "Pink Dreams" - это место, где ваши мечты о красивых ногтях становятся реальностью. Мы специализируемся на создании уникальных дизайнов и предоставлении высококачественных услуг по уходу за ногтями.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">🏆</div>
+                            <div class="feature-text">
+                                <h4>Опытные мастера</h4>
+                                <p>Более 5 лет профессионального опыта</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🧴</div>
+                            <div class="feature-text">
+                                <h4>Качественные материалы</h4>
+                                <p>Используем только премиум бренды</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🏠</div>
+                            <div class="feature-text">
+                                <h4>Уютная атмосфера</h4>
+                                <p>Комфортная обстановка для полного расслабления</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary animated-btn">Узнать больше</button>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">О нас</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Свяжитесь с Нами</h2>
+                <p class="section-subtitle">Запишитесь на процедуру прямо сейчас</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <h4>Адрес</h4>
+                            <p>г. Москва, ул. Красоты, д. 15</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">
+                            <h4>Телефон</h4>
+                            <p>+7 (999) 123-45-67</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-text">
+                            <h4>Часы работы</h4>
+                            <p>Пн-Вс: 10:00 - 20:00</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>info@pinkdreams.ru</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form class="booking-form" id="bookingForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Номер телефона" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Выберите услугу</option>
+                                <option value="classic">Классический маникюр</option>
+                                <option value="gel">Гель-лак покрытие</option>
+                                <option value="design">Nail-арт дизайн</option>
+                                <option value="extension">Наращивание ногтей</option>
+                                <option value="spa">SPA-уход для рук</option>
+                                <option value="pedicure">Педикюр</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Дополнительные пожелания"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary animated-btn full-width">Записаться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Pink Dreams</h3>
+                    <p>Студия маникюра премиум класса в самом центре Москвы</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">📱</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#">Классический маникюр</a></li>
+                        <li><a href="#">Гель-лак покрытие</a></li>
+                        <li><a href="#">Nail-арт дизайн</a></li>
+                        <li><a href="#">Наращивание ногтей</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Контакты</h4>
+                    <p>📍 г. Москва, ул. Красоты, д. 15</p>
+                    <p>📞 +7 (999) 123-45-67</p>
+                    <p>📧 info@pinkdreams.ru</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Часы работы</h4>
+                    <p>Понедельник - Воскресенье</p>
+                    <p>10:00 - 20:00</p>
+                    <button class="btn btn-primary animated-btn" onclick="scrollToSection('contact')">Записаться</button>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Pink Dreams. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                    
+                    // Animate hamburger bars
+                    const bars = hamburger.querySelectorAll('.bar');
+                    bars.forEach((bar, index) => {
+                        if (hamburger.classList.contains('active')) {
+                            if (index === 0) bar.style.transform = 'rotate(45deg) translate(5px, 5px)';
+                            if (index === 1) bar.style.opacity = '0';
+                            if (index === 2) bar.style.transform = 'rotate(-45deg) translate(7px, -6px)';
+                        } else {
+                            bar.style.transform = 'none';
+                            bar.style.opacity = '1';
+                        }
+                    });
+                });
+
+                // Close mobile menu when clicking on nav links
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                        
+                        // Reset hamburger bars
+                        const bars = hamburger.querySelectorAll('.bar');
+                        bars.forEach(bar => {
+                            bar.style.transform = 'none';
+                            bar.style.opacity = '1';
+                        });
+                    });
+                });
+            }
+
+            // Smooth scrolling for navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    scrollToSection(targetId);
+                });
+            });
+
+            // Form submission
+            const bookingForm = document.getElementById('bookingForm');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = this.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    submitBtn.textContent = 'Отправляем...';
+                    submitBtn.disabled = true;
+                    
+                    setTimeout(() => {
+                        showNotification('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
+                        bookingForm.reset();
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                    }, 2000);
+                });
+            }
+
+            // Scroll to top button
+            const scrollTopBtn = document.getElementById('scrollTop');
+            
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('show');
+                } else {
+                    scrollTopBtn.classList.remove('show');
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Header scroll effect
+            const header = document.querySelector('.header');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 100) {
+                    header.style.background = 'rgba(255, 255, 255, 0.98)';
+                    header.style.boxShadow = '0 2px 20px rgba(255, 107, 157, 0.1)';
+                } else {
+                    header.style.background = 'rgba(255, 255, 255, 0.95)';
+                    header.style.boxShadow = 'none';
+                }
+            });
+        });
+
+        // Smooth scroll function
+        function scrollToSection(sectionId) {
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetSection.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button class="notification-close" onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    notification.classList.remove('show');
+                    setTimeout(() => {
+                        notification.remove();
+                    }, 300);
+                }
+            }, 5000);
+        }
+
+        // Gallery lightbox
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const title = this.querySelector('.gallery-placeholder').textContent;
+                alert(`Просмотр: ${title}\n\nЗдесь будет отображаться полноразмерное изображение работы.`);
+            });
+        });
+    </script>
+</body>
+</html>
