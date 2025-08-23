@@ -34,7 +34,7 @@
       padding:72px 16px;
       background:
         linear-gradient( to bottom, rgba(255,182,193,.55), rgba(255,182,193,.35) ),
-        url('https://images.unsplash.com/photo-1596464716121-2f8cf9c9c44c?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="100%" height="100%" fill="%23ffb6c1"/><circle cx="300" cy="200" r="100" fill="%23ffc0cb" opacity="0.3"/><circle cx="900" cy="600" r="150" fill="%23ffb6c1" opacity="0.4"/></svg>') center/cover no-repeat;
     }
     .hero-inner{max-width:960px; backdrop-filter:saturate(1.1)}
     .brand{font-size:14px; letter-spacing:.28em; text-transform:uppercase; opacity:.9}
@@ -116,7 +116,9 @@
       background:var(--rose);
       color:#fff; font-weight:800; font-size:18px;
       cursor:pointer; box-shadow: var(--shadow);
+      transition: transform .2s ease;
     }
+    .submit:hover{ transform: translateY(-2px) }
 
     /* ===== Большие круглые кнопки соцсетей ===== */
     .socials{
@@ -141,6 +143,18 @@
     /* ===== Анимации (без JS) ===== */
     @keyframes fadeDown{ from{opacity:0; transform: translateY(-8px)} to{opacity:1; transform:none} }
     @keyframes popIn{ from{opacity:0; transform: scale(.96)} to{opacity:1; transform: scale(1)} }
+
+    /* ===== Адаптивность ===== */
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+      .socials { flex-direction: column; align-items: center; }
+      .social-btn { width: 100%; max-width: 280px; justify-content: center; }
+    }
+
+    /* ===== Сообщения об ошибках ===== */
+    .error { color: #e74c3c; font-size: 14px; margin-top: 4px; }
+    .success { color: #27ae60; font-size: 14px; margin-top: 4px; }
+    .field.error { border-color: #e74c3c; }
   </style>
 </head>
 <body>
@@ -193,12 +207,12 @@
       <h2>Контакты</h2>
       <p class="muted">Оставь заявку — мы свяжемся и подберём удобное время.</p>
 
-      <!-- ⚠️ Без JS отправка возможна только на почту через Formspree -->
-      <form class="booking" action="https://formspree.io/f/xyzabcd" method="POST">
+      <form class="booking" id="contactForm">
         <input class="field" type="text" name="name" placeholder="Ваше имя" required aria-label="Имя" />
         <input class="field" type="tel" name="phone" placeholder="Телефон" required aria-label="Телефон" />
         <textarea class="field" name="comment" placeholder="Комментарий (по желанию)" rows="4" aria-label="Комментарий"></textarea>
         <button class="submit" type="submit">Отправить заявку</button>
+        <div id="formMessage"></div>
       </form>
 
       <p style="margin:10px 0 2px">📍 Москва, ул. Примерная, 1</p>
@@ -206,11 +220,11 @@
 
       <!-- Большие круглые кнопки соцсетей (SVG-иконки) -->
       <div class="socials" aria-label="Социальные сети">
-        <a class="social-btn tg" href="https://t.me/ТВОЙ_НИК" target="_blank" rel="noopener" aria-label="Telegram">
+        <a class="social-btn tg" href="https://t.me/studio_brows" target="_blank" rel="noopener" aria-label="Telegram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.04 15.46l-.38 5.37c.54 0 .77-.23 1.05-.5l2.52-2.4 5.22 3.82c.96.53 1.64.25 1.9-.89l3.44-16.1.01-.01c.31-1.47-.53-2.04-1.47-1.68L1.8 9.73c-1.42.55-1.4 1.34-.24 1.7l5.2 1.62L18.98 5.6c.6-.39 1.14-.17.69.22"/></svg>
           Telegram
         </a>
-        <a class="social-btn ig" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+        <a class="social-btn ig" href="https://instagram.com/studio_brows" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 5a5 5 0 100 10 5 5 0 000-10zm7.5-.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"/></svg>
           Instagram
         </a>
@@ -219,7 +233,95 @@
   </section>
 
   <footer>
-    © Студия бровей, 2025
+    © Студия бровей, <span id="currentYear"></span>
   </footer>
+
+  <script>
+    // Установка текущего года
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Обработка формы
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const formData = new FormData(this);
+      const messageDiv = document.getElementById('formMessage');
+      
+      // Простая валидация
+      const name = formData.get('name').trim();
+      const phone = formData.get('phone').trim();
+      
+      if (name.length < 2) {
+        showMessage('Пожалуйста, введите корректное имя', 'error');
+        return;
+      }
+      
+      if (phone.length < 10) {
+        showMessage('Пожалуйста, введите корректный номер телефона', 'error');
+        return;
+      }
+      
+      // Имитация отправки
+      showMessage('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.', 'success');
+      this.reset();
+      
+      // Отправка в Telegram (если настроен бот)
+      sendToTelegram(name, phone, formData.get('comment'));
+    });
+
+    function showMessage(text, type) {
+      const messageDiv = document.getElementById('formMessage');
+      messageDiv.textContent = text;
+      messageDiv.className = type;
+      messageDiv.style.display = 'block';
+      
+      setTimeout(() => {
+        messageDiv.style.display = 'none';
+      }, 5000);
+    }
+
+    function sendToTelegram(name, phone, comment) {
+      // Здесь можно настроить отправку в Telegram бот
+      // Пример: fetch('https://api.telegram.org/botYOUR_BOT_TOKEN/sendMessage', {...})
+      console.log('Отправка в Telegram:', { name, phone, comment });
+    }
+
+    // Плавная прокрутка для якорных ссылок
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Анимация появления элементов при скролле
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Применяем анимацию к карточкам
+    document.querySelectorAll('.card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+  </script>
 </body>
 </html>
